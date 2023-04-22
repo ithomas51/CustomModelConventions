@@ -1,3 +1,5 @@
+namespace Conventions;
+
 public class AttributeBasedPropertyDiscoveryConvention : PropertyDiscoveryConvention
 {
     public AttributeBasedPropertyDiscoveryConvention(ProviderConventionSetBuilderDependencies dependencies)

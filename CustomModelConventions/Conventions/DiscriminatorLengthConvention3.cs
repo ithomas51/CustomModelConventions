@@ -1,3 +1,5 @@
+namespace Conventions;
+
 public class DiscriminatorLengthConvention3 : IModelFinalizingConvention
 {
     public void ProcessModelFinalizing(IConventionModelBuilder modelBuilder, IConventionContext<IConventionModelBuilder> context)

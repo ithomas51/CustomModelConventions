@@ -1,3 +1,5 @@
+namespace Conventions;
+
 public class DiscriminatorLengthConvention1 : IEntityTypeBaseTypeChangedConvention
 {
     private readonly int _discriminatorLength;

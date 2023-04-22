@@ -1,4 +1,7 @@
-﻿public class BlogsContext : DbContext
+﻿using Conventions;
+using Extensions;
+
+public class BlogsContext : DbContext
 {
     public DbSet<Blog> Blogs => Set<Blog>();
     public DbSet<Tag> Tags => Set<Tag>();
@@ -7,8 +10,12 @@
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder
-            .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Blogs")
-            .LogTo(DdlLogger.Log, new[] { RelationalEventId.CommandExecuted });
+            .UseSqlServer(
+                @"Server=localhost,1437;"
+                + "Database=Blogs;"
+                + "Persist Security Info=False;User ID=sa;Password=1Secure*Password1;TrustServerCertificate=True;Connection Timeout=30;"
+            )
+            .LogTo(DdlLogger.LogDbInfo, new[] { RelationalEventId.CommandExecuted });
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

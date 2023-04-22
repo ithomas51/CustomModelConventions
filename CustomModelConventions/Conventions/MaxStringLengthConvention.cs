@@ -1,3 +1,5 @@
+namespace Conventions;
+
 public class MaxStringLengthConvention : IModelFinalizingConvention
 {
     private readonly int _maxLength;

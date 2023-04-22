@@ -1,3 +1,5 @@
+namespace Conventions;
+
 public class DiscriminatorLengthConvention2 : IModelFinalizingConvention
 {
     private readonly int _discriminatorLength;
