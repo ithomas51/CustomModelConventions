@@ -1,0 +1,37 @@
+﻿@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class authors {
+   name: nvarchar(256)
+}
+class blogs {
+   name: nvarchar(256)
+   id: int
+}
+class post_tag {
+   posts_id: int
+   tags_id: nvarchar(256)
+}
+class posts {
+   title: nvarchar(128)
+   content: nvarchar(256)
+   published_on: datetime2
+   blog_id: int
+   author_name: nvarchar(256)
+   post_type: nvarchar(8)
+   promo_text: nvarchar(256)
+   id: int
+}
+class tags {
+   text: nvarchar(32)
+   id: nvarchar(256)
+}
+
+post_tag  -[#595959,plain]-^  posts    : "posts_id:id"
+post_tag  -[#595959,plain]-^  tags     : "tags_id:id"
+posts     -[#595959,plain]-^  authors  : "author_name:name"
+posts     -[#595959,plain]-^  blogs    : "blog_id:id"
+@enduml

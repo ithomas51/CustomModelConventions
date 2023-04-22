@@ -1,4 +1,5 @@
-﻿using Serilog;
+﻿using InjectLoggerToServices;
+using Serilog;
 using Serilog.Events;
 
 Log.Logger = new LoggerConfiguration()
@@ -14,6 +15,16 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 Log.Information("Starting up...");
+
+#region logger inter
+
+
+
+
+await InjectLoggerSample.Injecting_services_into_entities();
+
+#endregion
+
 using (var context = new BlogsContext())
 {
     context.Database.EnsureDeleted();
