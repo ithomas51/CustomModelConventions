@@ -14,7 +14,7 @@ public class BlogsContext : DbContext
                 @"Server=localhost,1437;"
                 + "Database=Blogs;"
                 + "Persist Security Info=False;User ID=sa;Password=1Secure*Password1;TrustServerCertificate=True;Connection Timeout=30;"
-            )
+            ).UseSnakeCaseNamingConvention()
             .LogTo(DdlLogger.LogDbInfo, new[] { RelationalEventId.CommandExecuted });
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -31,8 +31,11 @@ public class BlogsContext : DbContext
             .HasValue<FeaturedPost>("Featured");
     }
 
+
+    // value converter run only once for every entity
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {
+       // configurationBuilder.Conventions.Add( ()=> use);
         configurationBuilder.Conventions.Remove(typeof(ForeignKeyIndexConvention));
         configurationBuilder.Conventions.Add(_ => new MaxStringLengthConvention(256));
         configurationBuilder.Conventions.Add(_ => new DiscriminatorLengthConvention3());
